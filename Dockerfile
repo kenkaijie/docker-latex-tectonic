@@ -10,7 +10,7 @@ COPY *.in ./
 RUN for f in *.tex; do tectonic $f; done
 
 FROM debian:stretch-slim
-RUN apt-get update && apt-get -y install libfontconfig1-dev libgraphite2-dev libharfbuzz-dev libicu-dev libssl-dev zlib1g-dev ca-certificates
+RUN apt-get update && apt-get -y install libfontconfig1 libharfbuzz-icu0 ca-certificates
 COPY --from=builder /usr/local/cargo/bin/tectonic /usr/bin/
 COPY --from=builder /root/.cache/Tectonic/ /root/.cache/Tectonic/
 WORKDIR /usr/src
